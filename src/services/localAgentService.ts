@@ -17,6 +17,16 @@ export function getTopHarvestPlots(plots: Plot[]) {
 export function answerLocalPrompt(prompt: string, language: Language, context: AgentContext) {
   const normalized = prompt.toLowerCase();
 
+  if (
+    normalized.includes("ndvi") ||
+    normalized.includes("成熟") ||
+    normalized.includes("采茶路径") ||
+    normalized.includes("picking path") ||
+    normalized.includes("maturity")
+  ) {
+    return sensingAnswer(language, getTopHarvestPlots(context.plots));
+  }
+
   if (normalized.includes("路线") || normalized.includes("route") || normalized.includes("游客")) {
     return routeAnswer(language, context.attractions);
   }
@@ -106,4 +116,28 @@ function cultureAnswer(language: Language, cards: KnowledgeCard[]) {
   }
 
   return `${card.title.en}: ${card.body.en}`;
+}
+
+function sensingAnswer(language: Language, plots: Plot[]) {
+  const harvestPath = plots.filter((plot) => plot.pathStop > 0).sort((a, b) => a.pathStop - b.pathStop);
+  const evidence = harvestPath
+    .slice(0, 3)
+    .map((plot) => {
+      const index = plot.ndvi === null ? "NDVI 缺失" : `NDVI ${plot.ndvi.toFixed(2)}`;
+      return `${plot.id}（${index}，${plot.maturityLabel[language]}）`;
+    })
+    .join(language === "zh" ? " -> " : " -> ");
+  const gap = plots.find((plot) => plot.ndvi === null);
+
+  if (language === "zh") {
+    return `可用 NDVI、无人机 RGB/多光谱影像和冠层颜色综合判断成熟度。当前采茶路径建议为 起点 -> ${harvestPath
+      .map((plot) => plot.id)
+      .join(" -> ")} -> 加工点；依据为 ${evidence}。数据缺口：${gap?.id ?? "无"} 缺少最新多光谱 NDVI 复测，需先无人机复查后再决定是否加入路径。`;
+  }
+
+  return `Maturity is judged with NDVI, UAV RGB/multispectral imagery, and canopy color. Suggested picking path: Start -> ${harvestPath
+    .map((plot) => plot.id)
+    .join(" -> ")} -> processing site; evidence: ${evidence}. Data gap: ${
+    gap?.id ?? "none"
+  } lacks the latest multispectral NDVI revisit, so it should be checked by UAV before joining the path.`;
 }

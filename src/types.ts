@@ -20,6 +20,11 @@ export type Plot = {
   variety: BilingualText;
   maturity: Maturity;
   maturityLabel: BilingualText;
+  ndvi: number | null;
+  canopyColor: BilingualText;
+  uavObservation: BilingualText;
+  confidence: number;
+  pathStop: number;
   estimatedYieldKg: number;
   lastInspection: string;
   priority: Priority;

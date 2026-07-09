@@ -176,6 +176,10 @@ h3 {
   min-height: 520px;
 }
 
+.sensing-panel {
+  grid-column: span 2;
+}
+
 .culture-panel {
   grid-column: span 2;
 }
@@ -435,12 +439,77 @@ h3 {
   gap: 10px;
 }
 
+.sensing-summary {
+  margin: 0 0 12px;
+  color: #4e5e52;
+  line-height: 1.55;
+}
+
+.sensing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sensing-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #dce7dc;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.sensing-card small {
+  display: block;
+  color: #65746a;
+  line-height: 1.45;
+}
+
+.path-block {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #dce7dc;
+  border-radius: 8px;
+  background: #f8fbf7;
+}
+
+.panel-heading.compact {
+  margin-bottom: 8px;
+}
+
+.picking-path {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 22px;
+  color: #33483a;
+  line-height: 1.45;
+}
+
+.data-gap {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #f1d59d;
+  border-radius: 8px;
+  color: #61420f;
+  background: #fff8e7;
+}
+
+.data-gap p {
+  margin: 4px 0 0;
+  line-height: 1.45;
+}
+
 @media (max-width: 1180px) {
   .dashboard-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .culture-panel {
+    grid-column: span 2;
+  }
+
+  .sensing-panel {
     grid-column: span 2;
   }
 }
@@ -486,6 +555,10 @@ h3 {
     grid-column: auto;
   }
 
+  .sensing-panel {
+    grid-column: auto;
+  }
+
   .panel {
     padding: 14px;
   }
@@ -511,6 +584,10 @@ h3 {
   }
 
   .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sensing-grid {
     grid-template-columns: 1fr;
   }
 }

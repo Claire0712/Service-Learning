@@ -5,6 +5,7 @@ import { HarvestPanel } from "./components/HarvestPanel";
 import { Header } from "./components/Header";
 import { OrdersPanel } from "./components/OrdersPanel";
 import { RoutePanel } from "./components/RoutePanel";
+import { SensingPathPanel } from "./components/SensingPathPanel";
 import { UavPanel } from "./components/UavPanel";
 import { attractions, knowledgeCards, orders, plots, uavTasks } from "./data/sampleData";
 import type { Language } from "./types";
@@ -52,6 +53,7 @@ export default function App() {
       <div className="dashboard-grid">
         <AgentPanel language={language} remoteMode={remoteMode} context={context} />
         <HarvestPanel language={language} plots={plots} />
+        <SensingPathPanel language={language} plots={plots} />
         <RoutePanel language={language} attractions={attractions} />
         <OrdersPanel language={language} orders={orders} />
         <UavPanel language={language} tasks={uavTasks} />

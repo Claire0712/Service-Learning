@@ -31,4 +31,13 @@ describe("localAgentService", () => {
     expect(answer).toContain("half-day");
     expect(answer).toContain("Yangloudong");
   });
+
+  it("answers NDVI and UAV maturity questions with evidence and a data gap", () => {
+    const answer = answerLocalPrompt("从 NDVI 和无人机判断茶是否成熟，并规划采茶路径", "zh", context);
+
+    expect(answer).toContain("NDVI");
+    expect(answer).toContain("无人机");
+    expect(answer).toContain("采茶路径");
+    expect(answer).toContain("数据缺口");
+  });
 });

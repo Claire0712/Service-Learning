@@ -30,4 +30,14 @@ describe("App", () => {
     expect(await screen.findByText(/建议优先采摘 YLD-A012/)).toBeInTheDocument();
     expect(screen.getByText(/YLD-A012\/P1/)).toBeInTheDocument();
   });
+
+  it("shows remote-sensing maturity evidence and a picking path", () => {
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: "遥感成熟度依据" })).toBeInTheDocument();
+    expect(screen.getAllByText(/NDVI/).length).toBeGreaterThan(0);
+    expect(screen.getByRole("heading", { name: "采茶路径规划" })).toBeInTheDocument();
+    expect(screen.getByText(/起点/)).toBeInTheDocument();
+    expect(screen.getAllByText(/数据缺口/).length).toBeGreaterThan(0);
+  });
 });
