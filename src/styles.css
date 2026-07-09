@@ -153,6 +153,83 @@ h3 {
   font-size: 1.6rem;
 }
 
+.view-title,
+.perspective-entry {
+  max-width: 1440px;
+  margin: 0 auto 14px;
+}
+
+.view-title {
+  padding: 14px 16px;
+  border: 1px solid #d8e3d6;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.view-title h2 {
+  font-size: 1.35rem;
+}
+
+.perspective-entry {
+  min-height: 58vh;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+.entry-copy {
+  max-width: 760px;
+}
+
+.entry-copy h2 {
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+.perspective-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.perspective-card {
+  display: grid;
+  gap: 10px;
+  min-height: 180px;
+  padding: 18px;
+  border: 1px solid #c8d7c9;
+  border-radius: 8px;
+  color: #17211b;
+  text-align: left;
+  background: #ffffff;
+  box-shadow: 0 12px 26px rgba(39, 66, 45, 0.07);
+}
+
+.perspective-card:hover {
+  border-color: #39794a;
+}
+
+.perspective-card strong {
+  font-size: 1.3rem;
+}
+
+.perspective-card span,
+.entry-note {
+  color: #56675a;
+  line-height: 1.55;
+}
+
+.entry-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perspective-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: minmax(380px, 1.1fr) minmax(420px, 1.25fr) minmax(320px, 0.9fr);
@@ -160,6 +237,14 @@ h3 {
   align-items: start;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+.visitor-grid {
+  grid-template-columns: minmax(380px, 1fr) minmax(420px, 1.2fr) minmax(320px, 0.9fr);
+}
+
+.factory-grid {
+  grid-template-columns: minmax(380px, 1.1fr) minmax(420px, 1.25fr) minmax(320px, 0.9fr);
 }
 
 .panel {
@@ -500,6 +585,90 @@ h3 {
   line-height: 1.45;
 }
 
+.travel-steps {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.travel-steps > div,
+.experience-notes {
+  padding: 10px 12px;
+  border: 1px solid #dce7dc;
+  border-radius: 8px;
+  background: #f8fbf7;
+}
+
+.travel-steps p,
+.experience-notes p {
+  margin: 5px 0 0;
+  color: #4e5e52;
+  line-height: 1.45;
+}
+
+.resource-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.resource-link {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 36px 12px 12px;
+  border: 1px solid #dce7dc;
+  border-radius: 8px;
+  color: #17211b;
+  text-decoration: none;
+  background: #ffffff;
+}
+
+.resource-link svg {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #39794a;
+}
+
+.resource-link small {
+  color: #65746a;
+  line-height: 1.45;
+}
+
+.resource-type {
+  width: fit-content;
+  padding: 3px 8px;
+  border-radius: 8px;
+  color: #285b35;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: #dcfce7;
+}
+
+.experience-time {
+  margin-bottom: 10px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  color: #285b35;
+  font-weight: 800;
+  background: #dcfce7;
+}
+
+.experience-route {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding-left: 22px;
+  line-height: 1.45;
+}
+
+.experience-notes {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
 @media (max-width: 1180px) {
   .dashboard-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -511,6 +680,11 @@ h3 {
 
   .sensing-panel {
     grid-column: span 2;
+  }
+
+  .visitor-grid,
+  .factory-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }
 
@@ -538,11 +712,24 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .perspective-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .perspective-card {
+    min-height: 150px;
+  }
+
   .summary-strip > div {
     padding: 12px;
   }
 
   .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visitor-grid,
+  .factory-grid {
     grid-template-columns: 1fr;
   }
 

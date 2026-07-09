@@ -40,4 +40,13 @@ describe("localAgentService", () => {
     expect(answer).toContain("采茶路径");
     expect(answer).toContain("数据缺口");
   });
+
+  it("answers visitor travel and video questions with external services", () => {
+    const answer = answerLocalPrompt("我想看羊楼洞视频，并从出发到住宿规划行程", "zh", context);
+
+    expect(answer).toContain("羊楼洞");
+    expect(answer).toContain("12306");
+    expect(answer).toContain("携程");
+    expect(answer).toContain("视频");
+  });
 });

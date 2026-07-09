@@ -1,4 +1,4 @@
-import type { Attraction, KnowledgeCard, MerchantOrder, Plot, UavTask } from "../types";
+import type { Attraction, ExperiencePlan, ExternalResource, KnowledgeCard, MerchantOrder, Plot, UavTask } from "../types";
 
 export const plots: Plot[] = [
   {
@@ -331,3 +331,73 @@ export const knowledgeCards: KnowledgeCard[] = [
     },
   },
 ];
+
+export const externalResources: ExternalResource[] = [
+  {
+    id: "railway-12306",
+    type: "travel",
+    title: { zh: "12306 火车票", en: "12306 train tickets" },
+    description: {
+      zh: "用于查询到咸宁、赤壁等周边站点的火车票。外链跳转，不在本系统内下单。",
+      en: "Check train tickets to Xianning, Chibi, and nearby stations. Opens externally; booking is not handled inside this app.",
+    },
+    url: "https://www.12306.cn/",
+  },
+  {
+    id: "ctrip",
+    type: "lodging",
+    title: { zh: "携程出行与住宿", en: "Ctrip travel and lodging" },
+    description: {
+      zh: "用于查询酒店、交通和当地旅游产品。外链跳转。",
+      en: "Search hotels, transport, and local travel products. Opens externally.",
+    },
+    url: "https://www.ctrip.com/",
+  },
+  {
+    id: "trip",
+    type: "lodging",
+    title: { zh: "Trip.com 国际游客入口", en: "Trip.com for international visitors" },
+    description: {
+      zh: "适合英文界面用户查询住宿与行程产品。",
+      en: "Useful for English-interface users planning lodging and travel products.",
+    },
+    url: "https://www.trip.com/",
+  },
+  {
+    id: "video-search",
+    type: "video",
+    title: { zh: "羊楼洞视频资料", en: "Yangloudong video resources" },
+    description: {
+      zh: "跳转搜索羊楼洞古街、青砖茶、万里茶道相关视频。",
+      en: "Open video search results for Yangloudong old street, Qingzhuan tea, and the Tea Road.",
+    },
+    url: "https://www.bing.com/videos/search?q=%E7%BE%8A%E6%A5%BC%E6%B4%9E+%E9%9D%92%E7%A0%96%E8%8C%B6",
+  },
+  {
+    id: "culture-search",
+    type: "culture",
+    title: { zh: "羊楼洞历史文化资料", en: "Yangloudong history resources" },
+    description: {
+      zh: "用于继续查阅羊楼洞、青砖茶和万里茶道背景资料。",
+      en: "Continue reading about Yangloudong, Qingzhuan tea, and the Ten-Thousand-Li Tea Road.",
+    },
+    url: "https://www.bing.com/search?q=%E7%BE%8A%E6%A5%BC%E6%B4%9E+%E4%B8%87%E9%87%8C%E8%8C%B6%E9%81%93+%E9%9D%92%E7%A0%96%E8%8C%B6",
+  },
+];
+
+export const experiencePlan: ExperiencePlan = {
+  title: { zh: "青砖茶采摘体验", en: "Qingzhuan tea picking experience" },
+  plotId: "YLD-C028",
+  time: { zh: "建议 14:30-16:00，避开正午高温", en: "Suggested 14:30-16:00, avoiding midday heat" },
+  route: [
+    { zh: "中国青砖茶博物馆集合", en: "Meet at China Qingzhuan Tea Museum" },
+    { zh: "前往万亩茶园体验区", en: "Transfer to the ten-thousand-mu tea garden experience area" },
+    { zh: "YLD-C028 示范地块采摘体验", en: "Tea-picking experience at demo plot YLD-C028" },
+    { zh: "返回茶文创与产品体验店", en: "Return to the tea cultural creative and product shop" },
+  ],
+  notes: [
+    { zh: "体验地块应避开生产采摘 P1 地块。", en: "Experience plots should avoid production P1 harvest plots." },
+    { zh: "雨后或无人机复查未确认时不进入茶园。", en: "Do not enter the garden after rain or before UAV revisit confirmation." },
+    { zh: "穿防滑鞋，听从茶园工作人员安排。", en: "Wear non-slip shoes and follow garden staff instructions." },
+  ],
+};

@@ -1,14 +1,23 @@
 import { Database, Globe2, Languages, Search, WifiOff } from "lucide-react";
-import type { Language } from "../types";
+import type { Language, Perspective } from "../types";
 
 type HeaderProps = {
   language: Language;
   onLanguageChange: (language: Language) => void;
   remoteMode: boolean;
   onRemoteModeChange: (enabled: boolean) => void;
+  perspective?: Perspective | null;
+  onPerspectiveChange?: (perspective: Perspective) => void;
 };
 
-export function Header({ language, onLanguageChange, remoteMode, onRemoteModeChange }: HeaderProps) {
+export function Header({
+  language,
+  onLanguageChange,
+  remoteMode,
+  onRemoteModeChange,
+  perspective,
+  onPerspectiveChange,
+}: HeaderProps) {
   return (
     <header className="app-header">
       <div>
@@ -22,6 +31,25 @@ export function Header({ language, onLanguageChange, remoteMode, onRemoteModeCha
       </div>
 
       <div className="header-actions" aria-label={language === "zh" ? "系统控制" : "System controls"}>
+        {perspective && onPerspectiveChange ? (
+          <div className="perspective-switch" aria-label={language === "zh" ? "视角切换" : "Perspective switch"}>
+            <button
+              className={perspective === "visitor" ? "segmented-button active" : "segmented-button"}
+              type="button"
+              onClick={() => onPerspectiveChange("visitor")}
+            >
+              {language === "zh" ? "游客" : "Visitor"}
+            </button>
+            <button
+              className={perspective === "factory" ? "segmented-button active" : "segmented-button"}
+              type="button"
+              onClick={() => onPerspectiveChange("factory")}
+            >
+              {language === "zh" ? "茶厂" : "Factory"}
+            </button>
+          </div>
+        ) : null}
+
         <button
           className="segmented-button"
           type="button"

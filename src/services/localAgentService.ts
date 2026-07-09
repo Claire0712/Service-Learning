@@ -18,6 +18,32 @@ export function answerLocalPrompt(prompt: string, language: Language, context: A
   const normalized = prompt.toLowerCase();
 
   if (
+    normalized.includes("12306") ||
+    normalized.includes("携程") ||
+    normalized.includes("住宿") ||
+    normalized.includes("出发") ||
+    normalized.includes("travel") ||
+    normalized.includes("lodging") ||
+    normalized.includes("hotel")
+  ) {
+    return travelAnswer(language);
+  }
+
+  if (
+    normalized.includes("视频") ||
+    normalized.includes("video") ||
+    normalized.includes("历史") ||
+    normalized.includes("history") ||
+    normalized.includes("羊楼洞")
+  ) {
+    return visitorCultureAnswer(language);
+  }
+
+  if (normalized.includes("体验") || normalized.includes("experience") || normalized.includes("tea-picking")) {
+    return experienceAnswer(language);
+  }
+
+  if (
     normalized.includes("ndvi") ||
     normalized.includes("成熟") ||
     normalized.includes("采茶路径") ||
@@ -116,6 +142,30 @@ function cultureAnswer(language: Language, cards: KnowledgeCard[]) {
   }
 
   return `${card.title.en}: ${card.body.en}`;
+}
+
+function visitorCultureAnswer(language: Language) {
+  if (language === "zh") {
+    return "羊楼洞是万里茶道重要节点和青砖茶文化代表地。游客可以先了解古街历史、青砖茶制作和茶商贸易故事，再通过视频资料形成直观印象；页面提供羊楼洞视频与历史文化外链。";
+  }
+
+  return "Yangloudong is an important node of the Ten-Thousand-Li Tea Road and a representative place for Qingzhuan tea culture. Visitors can learn the old street history, tea-making process, and merchant stories, then use linked video resources for a visual preview.";
+}
+
+function travelAnswer(language: Language) {
+  if (language === "zh") {
+    return "行程建议：先用 12306 查询到咸宁或赤壁周边站点的火车票，再用携程查询住宿和当地交通；出发前可先看羊楼洞视频资料，抵达后安排中国青砖茶博物馆、羊楼洞古街、万亩茶园采摘体验。";
+  }
+
+  return "Trip suggestion: use 12306 for trains to Xianning or Chibi-area stations, then use Ctrip or Trip.com for lodging and local transfer options. After arrival, visit the China Qingzhuan Tea Museum, Yangloudong old street, and a tea-picking experience area.";
+}
+
+function experienceAnswer(language: Language) {
+  if (language === "zh") {
+    return "采摘体验建议安排在 YLD-C028 示范地块，避开生产采摘 P1 地块。推荐下午 14:30-16:00，路线为博物馆集合 -> 万亩茶园体验区 -> YLD-C028 采摘体验 -> 茶文创体验店。";
+  }
+
+  return "Plan the tea-picking experience at demo plot YLD-C028 and avoid production P1 plots. Suggested time is 14:30-16:00 with route: museum meeting point -> tea garden experience area -> YLD-C028 picking -> tea product shop.";
 }
 
 function sensingAnswer(language: Language, plots: Plot[]) {

@@ -1,18 +1,15 @@
 import { useState } from "react";
-import { AgentPanel } from "./components/AgentPanel";
-import { CulturePanel } from "./components/CulturePanel";
-import { HarvestPanel } from "./components/HarvestPanel";
+import { FactoryView } from "./components/FactoryView";
 import { Header } from "./components/Header";
-import { OrdersPanel } from "./components/OrdersPanel";
-import { RoutePanel } from "./components/RoutePanel";
-import { SensingPathPanel } from "./components/SensingPathPanel";
-import { UavPanel } from "./components/UavPanel";
-import { attractions, knowledgeCards, orders, plots, uavTasks } from "./data/sampleData";
-import type { Language } from "./types";
+import { PerspectiveSelector } from "./components/PerspectiveSelector";
+import { VisitorView } from "./components/VisitorView";
+import { attractions, experiencePlan, externalResources, knowledgeCards, orders, plots, uavTasks } from "./data/sampleData";
+import type { Language, Perspective } from "./types";
 
 export default function App() {
   const [language, setLanguage] = useState<Language>("zh");
   const [remoteMode, setRemoteMode] = useState(false);
+  const [perspective, setPerspective] = useState<Perspective | null>(null);
 
   const context = {
     plots,
@@ -29,36 +26,23 @@ export default function App() {
         onLanguageChange={setLanguage}
         remoteMode={remoteMode}
         onRemoteModeChange={setRemoteMode}
+        perspective={perspective}
+        onPerspectiveChange={setPerspective}
       />
 
-      <section className="summary-strip" aria-label={language === "zh" ? "关键指标" : "Key metrics"}>
-        <div>
-          <span>{language === "zh" ? "P1 地块" : "P1 plots"}</span>
-          <strong>{plots.filter((plot) => plot.priority === "P1").length}</strong>
-        </div>
-        <div>
-          <span>{language === "zh" ? "可匹配订单" : "Matched orders"}</span>
-          <strong>{orders.length}</strong>
-        </div>
-        <div>
-          <span>{language === "zh" ? "无人机任务" : "UAV tasks"}</span>
-          <strong>{uavTasks.length}</strong>
-        </div>
-        <div>
-          <span>{language === "zh" ? "文旅站点" : "Route stops"}</span>
-          <strong>{attractions.length}</strong>
-        </div>
-      </section>
+      {!perspective ? <PerspectiveSelector language={language} onSelect={setPerspective} /> : null}
 
-      <div className="dashboard-grid">
-        <AgentPanel language={language} remoteMode={remoteMode} context={context} />
-        <HarvestPanel language={language} plots={plots} />
-        <SensingPathPanel language={language} plots={plots} />
-        <RoutePanel language={language} attractions={attractions} />
-        <OrdersPanel language={language} orders={orders} />
-        <UavPanel language={language} tasks={uavTasks} />
-        <CulturePanel language={language} cards={knowledgeCards} />
-      </div>
+      {perspective === "visitor" ? (
+        <VisitorView
+          language={language}
+          remoteMode={remoteMode}
+          context={context}
+          resources={externalResources}
+          experiencePlan={experiencePlan}
+        />
+      ) : null}
+
+      {perspective === "factory" ? <FactoryView language={language} remoteMode={remoteMode} context={context} /> : null}
     </main>
   );
 }

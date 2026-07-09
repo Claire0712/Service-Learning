@@ -1,5 +1,7 @@
 export type Language = "zh" | "en";
 
+export type Perspective = "visitor" | "factory";
+
 export type BilingualText = {
   zh: string;
   en: string;
@@ -63,6 +65,22 @@ export type KnowledgeCard = {
   id: string;
   title: BilingualText;
   body: BilingualText;
+};
+
+export type ExternalResource = {
+  id: string;
+  type: "travel" | "lodging" | "video" | "culture";
+  title: BilingualText;
+  description: BilingualText;
+  url: string;
+};
+
+export type ExperiencePlan = {
+  title: BilingualText;
+  plotId: string;
+  time: BilingualText;
+  route: BilingualText[];
+  notes: BilingualText[];
 };
 
 export type ChatMessage = {
