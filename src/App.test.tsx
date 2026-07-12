@@ -7,7 +7,8 @@ describe("App", () => {
   it("shows perspective choices before entering the app", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "AI + 茶文旅服务智能体" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "羊楼洞茶文旅与茶园遥感决策平台" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "选择研究与服务视角" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /游客视角/ })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /茶厂视角/ })).toBeInTheDocument();
   });
@@ -18,7 +19,7 @@ describe("App", () => {
 
     await user.click(screen.getByRole("button", { name: "切换到英文" }));
 
-    expect(screen.getByRole("heading", { name: "AI + Tea Culture and Tourism Agent" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Yangloudong Tea Culture and Remote-Sensing Decision Platform" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Visitor/ })).toBeInTheDocument();
   });
 
@@ -43,6 +44,8 @@ describe("App", () => {
 
     expect(await screen.findByRole("heading", { name: "茶厂视角" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "遥感成熟度依据" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "无人机示范田判读" })).toBeInTheDocument();
+    expect(screen.getByAltText("无人机扫描示范田正射影像")).toBeInTheDocument();
     expect(screen.getAllByText(/NDVI/).length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "采茶路径规划" })).toBeInTheDocument();
     expect(screen.getByText(/起点/)).toBeInTheDocument();

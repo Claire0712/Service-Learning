@@ -10,8 +10,8 @@ export function PerspectiveSelector({ language, onSelect }: PerspectiveSelectorP
   return (
     <section className="perspective-entry" aria-labelledby="perspective-title">
       <div className="entry-copy">
-        <p className="eyebrow">{language === "zh" ? "选择使用视角" : "Choose your perspective"}</p>
-        <h2 id="perspective-title">{language === "zh" ? "你今天从哪个角度使用智能体？" : "Which perspective do you need today?"}</h2>
+        <p className="eyebrow">{language === "zh" ? "选择视角" : "Select perspective"}</p>
+        <h2 id="perspective-title">{language === "zh" ? "选择研究与服务视角" : "Select a research and service view"}</h2>
       </div>
       <div className="perspective-cards">
         <button className="perspective-card visitor" type="button" onClick={() => onSelect("visitor")}>
@@ -19,8 +19,8 @@ export function PerspectiveSelector({ language, onSelect }: PerspectiveSelectorP
           <strong>{language === "zh" ? "游客视角" : "Visitor perspective"}</strong>
           <span>
             {language === "zh"
-              ? "历史文化、视频资料、出行住宿、采摘体验"
-              : "History, videos, travel, lodging, and tea-picking experience"}
+              ? "历史文化、视频资料、出行住宿、采摘体验规划"
+              : "History, videos, travel, lodging, and harvest-experience planning"}
           </span>
         </button>
         <button className="perspective-card factory" type="button" onClick={() => onSelect("factory")}>
@@ -28,16 +28,16 @@ export function PerspectiveSelector({ language, onSelect }: PerspectiveSelectorP
           <strong>{language === "zh" ? "茶厂视角" : "Tea factory perspective"}</strong>
           <span>
             {language === "zh"
-              ? "NDVI、无人机成熟度判断、采摘路径规划"
-              : "NDVI, UAV maturity evidence, and picking-path planning"}
+              ? "NDVI、无人机证据、成熟度判读、采摘路径"
+              : "NDVI, UAV evidence, maturity reading, and picking paths"}
           </span>
         </button>
       </div>
       <div className="entry-note">
         <Sprout size={18} />
         {language === "zh"
-          ? "第一版使用本地演示数据，外部平台以链接方式接入。"
-          : "This demo uses local sample data and connects external platforms through links."}
+          ? "第一版保留本地样例数据与外部链接，后续可接入实时 API 与检索服务。"
+          : "Version 1 keeps local sample data and external links, with space for live APIs and search services."}
       </div>
     </section>
   );

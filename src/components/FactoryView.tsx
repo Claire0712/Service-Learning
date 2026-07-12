@@ -2,6 +2,7 @@ import { AgentPanel } from "./AgentPanel";
 import { HarvestPanel } from "./HarvestPanel";
 import { OrdersPanel } from "./OrdersPanel";
 import { SensingPathPanel } from "./SensingPathPanel";
+import { UavFieldPanel } from "./UavFieldPanel";
 import { UavPanel } from "./UavPanel";
 import type { Attraction, KnowledgeCard, Language, MerchantOrder, Plot, UavTask } from "../types";
 
@@ -43,6 +44,7 @@ export function FactoryView({ language, remoteMode, context }: FactoryViewProps)
         </div>
       </section>
       <div className="dashboard-grid factory-grid">
+        <UavFieldPanel language={language} plots={context.plots} />
         <AgentPanel language={language} remoteMode={remoteMode} perspective="factory" context={context} />
         <HarvestPanel language={language} plots={context.plots} />
         <SensingPathPanel language={language} plots={context.plots} />

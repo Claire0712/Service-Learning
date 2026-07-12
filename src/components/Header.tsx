@@ -21,12 +21,16 @@ export function Header({
   return (
     <header className="app-header">
       <div>
-        <p className="eyebrow">{language === "zh" ? "羊楼洞服务学习原型" : "Yangloudong service-learning prototype"}</p>
-        <h1>{language === "zh" ? "AI + 茶文旅服务智能体" : "AI + Tea Culture and Tourism Agent"}</h1>
+        <p className="eyebrow">{language === "zh" ? "服务学习研究原型" : "Service-learning research prototype"}</p>
+        <h1>
+          {language === "zh"
+            ? "羊楼洞茶文旅与茶园遥感决策平台"
+            : "Yangloudong Tea Culture and Remote-Sensing Decision Platform"}
+        </h1>
         <p className="header-subtitle">
           {language === "zh"
-            ? "综合茶园采摘规划、游客导览、茶文化科普与商家供货建议"
-            : "Integrated harvest planning, visitor guidance, tea culture, and merchant supply matching"}
+            ? "面向游客服务与茶厂生产的双视角展示，整合文化资料、行程规划、NDVI 证据与无人机复查任务"
+            : "A two-perspective research interface for visitor service and factory operations, linking cultural resources, itinerary planning, NDVI evidence, and UAV rechecking tasks"}
         </p>
       </div>
 
@@ -67,7 +71,7 @@ export function Header({
           aria-label={language === "zh" ? "切换联网模式" : "Toggle remote mode"}
         >
           {remoteMode ? <Globe2 size={16} /> : <WifiOff size={16} />}
-          {remoteMode ? (language === "zh" ? "联网占位" : "Remote stub") : language === "zh" ? "本地演示" : "Local demo"}
+          {remoteMode ? (language === "zh" ? "API 预留" : "API stub") : language === "zh" ? "样例数据" : "Sample mode"}
         </button>
 
         <span className="status-pill">
