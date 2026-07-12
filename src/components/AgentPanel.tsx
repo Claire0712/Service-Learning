@@ -1,4 +1,4 @@
-import { Bot, Send, Sparkles } from "lucide-react";
+import { ListChecks, MessageSquareText, Send } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 import type { Attraction, ChatMessage, KnowledgeCard, Language, MerchantOrder, Perspective, Plot, UavTask } from "../types";
 import { answerLocalPrompt } from "../services/localAgentService";
@@ -80,16 +80,16 @@ export function AgentPanel({ language, remoteMode, perspective = "factory", cont
     <section className="panel agent-panel" aria-labelledby="agent-title">
       <div className="panel-heading">
         <div>
-          <p className="eyebrow">{language === "zh" ? "双语问答" : "Bilingual Q&A"}</p>
-          <h2 id="agent-title">{language === "zh" ? "服务智能体" : "Service agent"}</h2>
+          <p className="eyebrow">{language === "zh" ? "证据问答" : "Evidence Q&A"}</p>
+          <h2 id="agent-title">{language === "zh" ? "研究与服务问答" : "Research and service notes"}</h2>
         </div>
-        <Bot size={22} />
+        <MessageSquareText size={22} />
       </div>
 
       <div className="quick-prompts" aria-label={language === "zh" ? "示例问题" : "Example prompts"}>
         {promptSets[perspective][language].map((prompt) => (
           <button key={prompt} type="button" onClick={() => void askAgent(prompt)}>
-            <Sparkles size={14} />
+            <ListChecks size={14} />
             {prompt}
           </button>
         ))}
