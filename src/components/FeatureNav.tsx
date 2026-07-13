@@ -4,6 +4,8 @@ import type { Language, Perspective } from "../types";
 type FeatureNavProps = {
   language: Language;
   perspective: Perspective;
+  activeId?: string;
+  onSelect?: (id: string) => void;
 };
 
 const featureItems = {
@@ -25,12 +27,26 @@ const featureItems = {
   ],
 };
 
-export function FeatureNav({ language, perspective }: FeatureNavProps) {
+export function FeatureNav({ language, perspective, activeId, onSelect }: FeatureNavProps) {
   return (
     <nav className="feature-nav" aria-label={language === "zh" ? "功能入口" : "Feature shortcuts"}>
       <span>{language === "zh" ? "功能入口" : "Shortcuts"}</span>
       {featureItems[perspective].map((item) => {
         const Icon = item.icon;
+
+        if (onSelect) {
+          return (
+            <button
+              className={activeId === item.id ? "active" : ""}
+              type="button"
+              key={item.id}
+              onClick={() => onSelect(item.id)}
+            >
+              <Icon size={15} />
+              {item[language]}
+            </button>
+          );
+        }
 
         return (
           <a href={`#${item.id}`} key={item.id}>

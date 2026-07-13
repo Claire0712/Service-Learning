@@ -263,7 +263,6 @@ h3 {
   align-items: start;
   max-width: 1440px;
   margin: 0 auto;
-  counter-reset: panel;
 }
 
 .visitor-grid {
@@ -281,28 +280,10 @@ h3 {
 .panel {
   position: relative;
   min-width: 0;
-  padding: 28px 12px 12px;
+  padding: 12px;
   border: 1px solid var(--line);
   border-radius: 0;
   background: var(--paper);
-}
-
-.panel::before {
-  counter-increment: panel;
-  content: counter(panel, lower-alpha);
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  color: var(--ink);
-  font-size: 0.9rem;
-  font-weight: 800;
-  line-height: 1;
-  background: #f1f1ed;
-  border: 1px solid var(--line);
 }
 
 .agent-panel,
@@ -614,6 +595,7 @@ h3 {
 }
 
 .feature-nav a,
+.feature-nav button,
 .search-submit {
   display: inline-flex;
   align-items: center;
@@ -622,15 +604,33 @@ h3 {
   min-height: 32px;
   padding: 6px 9px;
   border: 1px solid var(--line);
+  border-radius: 0;
   color: var(--ink);
+  font: inherit;
   text-decoration: none;
   background: #ffffff;
 }
 
 .feature-nav a:hover,
+.feature-nav button:hover,
+.feature-nav button.active,
 .search-submit:hover {
   border-color: var(--nature-navy);
   background: #f4f7fb;
+}
+
+.feature-nav button.active {
+  color: #ffffff;
+  background: var(--nature-navy);
+}
+
+.visitor-feature-stage {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.visitor-feature-stage > .panel {
+  min-height: 420px;
 }
 
 .sensing-summary {
@@ -1058,7 +1058,7 @@ h3 {
   }
 
   .panel {
-    padding: 28px 10px 10px;
+    padding: 10px;
   }
 
   .chat-log {
@@ -1109,7 +1109,8 @@ h3 {
   }
 
   .feature-nav span,
-  .feature-nav a {
+  .feature-nav a,
+  .feature-nav button {
     flex: 0 0 auto;
   }
 

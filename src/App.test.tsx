@@ -23,7 +23,7 @@ describe("App", () => {
     expect(screen.getByRole("button", { name: /Visitor/ })).toBeInTheDocument();
   });
 
-  it("shows visitor travel links, video resources, and tea-picking experience plan", async () => {
+  it("lets visitors choose one feature before showing its detail panel", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -32,10 +32,24 @@ describe("App", () => {
     expect(await screen.findByRole("heading", { name: "游客视角" })).toBeInTheDocument();
     expect(screen.getByRole("navigation", { name: "功能入口" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "资料检索" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "采摘体验规划" })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "采摘体验" }));
+
+    expect(screen.getByRole("heading", { name: "采摘体验规划" })).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "资料检索" })).not.toBeInTheDocument();
+  });
+
+  it("shows visitor travel links when the travel feature is selected", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: /游客视角/ }));
+    await user.click(screen.getByRole("button", { name: "行程" }));
+
     expect(screen.getByText(/12306/)).toBeInTheDocument();
     expect(screen.getByText(/携程/)).toBeInTheDocument();
     expect(screen.getAllByText(/视频|Video/).length).toBeGreaterThan(0);
-    expect(screen.getByRole("heading", { name: "采摘体验规划" })).toBeInTheDocument();
   });
 
   it("shows factory remote-sensing maturity evidence and a picking path", async () => {
