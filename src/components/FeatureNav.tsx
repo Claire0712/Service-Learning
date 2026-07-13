@@ -1,4 +1,4 @@
-import { ClipboardList, Leaf, MapPinned, Plane, Search, Sprout, TrainFront } from "lucide-react";
+import { ClipboardList, Leaf, MapPinned, PackageCheck, Plane, Sprout, TrainFront } from "lucide-react";
 import type { Language, Perspective } from "../types";
 
 type FeatureNavProps = {
@@ -11,7 +11,6 @@ type FeatureNavProps = {
 const featureItems = {
   visitor: [
     { id: "notes", icon: ClipboardList, zh: "问答", en: "Notes" },
-    { id: "search", icon: Search, zh: "检索", en: "Search" },
     { id: "travel", icon: TrainFront, zh: "行程", en: "Travel" },
     { id: "route", icon: MapPinned, zh: "路线", en: "Route" },
     { id: "experience", icon: Sprout, zh: "采摘体验", en: "Experience" },
@@ -22,6 +21,7 @@ const featureItems = {
     { id: "notes", icon: ClipboardList, zh: "问答", en: "Notes" },
     { id: "harvest", icon: Sprout, zh: "采摘", en: "Harvest" },
     { id: "sensing", icon: Leaf, zh: "遥感", en: "Sensing" },
+    { id: "orders", icon: PackageCheck, zh: "供货", en: "Supply" },
     { id: "uav", icon: Plane, zh: "无人机", en: "UAV" },
   ],
 };

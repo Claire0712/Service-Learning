@@ -63,9 +63,11 @@ export function AgentPanel({ language, remoteMode, perspective = "factory", cont
     }
 
     const userMessage: ChatMessage = { role: "user", text: prompt };
-    const response = remoteMode
-      ? (await answerRemotePrompt(prompt, language)).text
-      : answerLocalPrompt(prompt, language, context);
+    const localResponse = answerLocalPrompt(prompt, language, context);
+    const remoteResponse = remoteMode
+      ? await answerRemotePrompt(prompt, language, perspective, context)
+      : null;
+    const response = remoteResponse?.text || localResponse;
 
     setMessages((current) => [...current, userMessage, { role: "assistant", text: response }]);
     setInput("");

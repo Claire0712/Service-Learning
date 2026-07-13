@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { AgentPanel } from "./AgentPanel";
 import { FeatureNav } from "./FeatureNav";
 import { HarvestPanel } from "./HarvestPanel";
@@ -6,6 +7,8 @@ import { SensingPathPanel } from "./SensingPathPanel";
 import { UavFieldPanel } from "./UavFieldPanel";
 import { UavPanel } from "./UavPanel";
 import type { Attraction, KnowledgeCard, Language, MerchantOrder, Plot, UavTask } from "../types";
+
+type FactoryFeature = "field" | "notes" | "harvest" | "sensing" | "orders" | "uav";
 
 type FactoryViewProps = {
   language: Language;
@@ -20,6 +23,26 @@ type FactoryViewProps = {
 };
 
 export function FactoryView({ language, remoteMode, context }: FactoryViewProps) {
+  const [activeFeature, setActiveFeature] = useState<FactoryFeature>("field");
+
+  function renderActiveFeature() {
+    switch (activeFeature) {
+      case "notes":
+        return <AgentPanel language={language} remoteMode={remoteMode} perspective="factory" context={context} />;
+      case "harvest":
+        return <HarvestPanel language={language} plots={context.plots} />;
+      case "sensing":
+        return <SensingPathPanel language={language} plots={context.plots} />;
+      case "orders":
+        return <OrdersPanel language={language} orders={context.orders} />;
+      case "uav":
+        return <UavPanel language={language} tasks={context.uavTasks} />;
+      case "field":
+      default:
+        return <UavFieldPanel language={language} plots={context.plots} />;
+    }
+  }
+
   return (
     <>
       <section className="view-title">
@@ -44,14 +67,9 @@ export function FactoryView({ language, remoteMode, context }: FactoryViewProps)
           <strong>{context.plots.filter((plot) => plot.ndvi === null).length}</strong>
         </div>
       </section>
-      <FeatureNav language={language} perspective="factory" />
-      <div className="dashboard-grid factory-grid">
-        <UavFieldPanel language={language} plots={context.plots} />
-        <AgentPanel language={language} remoteMode={remoteMode} perspective="factory" context={context} />
-        <HarvestPanel language={language} plots={context.plots} />
-        <SensingPathPanel language={language} plots={context.plots} />
-        <OrdersPanel language={language} orders={context.orders} />
-        <UavPanel language={language} tasks={context.uavTasks} />
+      <FeatureNav language={language} perspective="factory" activeId={activeFeature} onSelect={(id) => setActiveFeature(id as FactoryFeature)} />
+      <div className="feature-stage factory-feature-stage">
+        {renderActiveFeature()}
       </div>
     </>
   );

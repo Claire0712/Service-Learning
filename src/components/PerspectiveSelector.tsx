@@ -36,8 +36,8 @@ export function PerspectiveSelector({ language, onSelect }: PerspectiveSelectorP
       <div className="entry-note">
         <Sprout size={18} />
         {language === "zh"
-          ? "第一版保留本地样例数据与外部链接，后续可接入实时 API 与检索服务。"
-          : "Version 1 keeps local sample data and external links, with space for live APIs and search services."}
+          ? "第一版保留本地样例数据与外部链接，问答可通过服务端代理接入千问。"
+          : "Version 1 keeps local sample data and external links, with Qwen support through a server-side proxy."}
       </div>
     </section>
   );

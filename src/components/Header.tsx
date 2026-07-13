@@ -1,4 +1,4 @@
-import { Database, Globe2, Languages, Search, WifiOff } from "lucide-react";
+import { Bot, Database, Globe2, Languages, WifiOff } from "lucide-react";
 import type { Language, Perspective } from "../types";
 
 type HeaderProps = {
@@ -71,7 +71,7 @@ export function Header({
           aria-label={language === "zh" ? "切换联网模式" : "Toggle remote mode"}
         >
           {remoteMode ? <Globe2 size={16} /> : <WifiOff size={16} />}
-          {remoteMode ? (language === "zh" ? "API/Search" : "API/Search") : language === "zh" ? "样例数据" : "Sample mode"}
+          {remoteMode ? (language === "zh" ? "千问模式" : "Qwen mode") : language === "zh" ? "样例数据" : "Sample mode"}
         </button>
 
         <span className="status-pill">
@@ -80,8 +80,8 @@ export function Header({
         </span>
 
         <span className="status-pill muted">
-          <Search size={14} />
-          {language === "zh" ? "Search 可用" : "Search ready"}
+          <Bot size={14} />
+          {language === "zh" ? "千问预留" : "Qwen-ready"}
         </span>
       </div>
     </header>

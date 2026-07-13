@@ -4,11 +4,10 @@ import { CulturePanel } from "./CulturePanel";
 import { ExperiencePanel } from "./ExperiencePanel";
 import { FeatureNav } from "./FeatureNav";
 import { RoutePanel } from "./RoutePanel";
-import { SearchPanel } from "./SearchPanel";
 import { TravelPlannerPanel } from "./TravelPlannerPanel";
 import type { Attraction, ExperiencePlan, ExternalResource, KnowledgeCard, Language, MerchantOrder, Plot, UavTask } from "../types";
 
-type VisitorFeature = "notes" | "search" | "travel" | "route" | "experience" | "culture";
+type VisitorFeature = "notes" | "travel" | "route" | "experience" | "culture";
 
 type VisitorViewProps = {
   language: Language;
@@ -25,7 +24,7 @@ type VisitorViewProps = {
 };
 
 export function VisitorView({ language, remoteMode, context, resources, experiencePlan }: VisitorViewProps) {
-  const [activeFeature, setActiveFeature] = useState<VisitorFeature>("search");
+  const [activeFeature, setActiveFeature] = useState<VisitorFeature>("notes");
 
   function renderActiveFeature() {
     switch (activeFeature) {
@@ -39,9 +38,8 @@ export function VisitorView({ language, remoteMode, context, resources, experien
         return <ExperiencePanel language={language} plan={experiencePlan} />;
       case "culture":
         return <CulturePanel language={language} cards={context.knowledgeCards} />;
-      case "search":
       default:
-        return <SearchPanel language={language} perspective="visitor" />;
+        return <AgentPanel language={language} remoteMode={remoteMode} perspective="visitor" context={context} />;
     }
   }
 
@@ -52,7 +50,7 @@ export function VisitorView({ language, remoteMode, context, resources, experien
         <h2>{language === "zh" ? "游客视角" : "Visitor perspective"}</h2>
       </section>
       <FeatureNav language={language} perspective="visitor" activeId={activeFeature} onSelect={(id) => setActiveFeature(id as VisitorFeature)} />
-      <div className="visitor-feature-stage">
+      <div className="feature-stage">
         {renderActiveFeature()}
       </div>
     </>
