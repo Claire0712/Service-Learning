@@ -20,7 +20,6 @@ const featureItems = {
   factory: [
     { id: "field", icon: MapPinned, zh: "示范田", en: "Field" },
     { id: "notes", icon: ClipboardList, zh: "问答", en: "Notes" },
-    { id: "search", icon: Search, zh: "检索", en: "Search" },
     { id: "harvest", icon: Sprout, zh: "采摘", en: "Harvest" },
     { id: "sensing", icon: Leaf, zh: "遥感", en: "Sensing" },
     { id: "uav", icon: Plane, zh: "无人机", en: "UAV" },
