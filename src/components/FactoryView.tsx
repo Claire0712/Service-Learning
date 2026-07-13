@@ -1,6 +1,8 @@
 import { AgentPanel } from "./AgentPanel";
+import { FeatureNav } from "./FeatureNav";
 import { HarvestPanel } from "./HarvestPanel";
 import { OrdersPanel } from "./OrdersPanel";
+import { SearchPanel } from "./SearchPanel";
 import { SensingPathPanel } from "./SensingPathPanel";
 import { UavFieldPanel } from "./UavFieldPanel";
 import { UavPanel } from "./UavPanel";
@@ -43,9 +45,11 @@ export function FactoryView({ language, remoteMode, context }: FactoryViewProps)
           <strong>{context.plots.filter((plot) => plot.ndvi === null).length}</strong>
         </div>
       </section>
+      <FeatureNav language={language} perspective="factory" />
       <div className="dashboard-grid factory-grid">
         <UavFieldPanel language={language} plots={context.plots} />
         <AgentPanel language={language} remoteMode={remoteMode} perspective="factory" context={context} />
+        <SearchPanel language={language} perspective="factory" />
         <HarvestPanel language={language} plots={context.plots} />
         <SensingPathPanel language={language} plots={context.plots} />
         <OrdersPanel language={language} orders={context.orders} />

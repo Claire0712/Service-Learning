@@ -8,7 +8,7 @@ type RoutePanelProps = {
 
 export function RoutePanel({ language, attractions }: RoutePanelProps) {
   return (
-    <section className="panel" aria-labelledby="route-title">
+    <section id="route" className="panel" aria-labelledby="route-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "游客服务" : "Visitor service"}</p>

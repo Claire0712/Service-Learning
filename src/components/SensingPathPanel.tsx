@@ -12,7 +12,7 @@ export function SensingPathPanel({ language, plots }: SensingPathPanelProps) {
   const evidencePlots = plots.filter((plot) => plot.priority === "P1" || plot.priority === "P2").slice(0, 4);
 
   return (
-    <section className="panel sensing-panel" aria-labelledby="sensing-title">
+    <section id="sensing" className="panel sensing-panel" aria-labelledby="sensing-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "NDVI + 无人机" : "NDVI + UAV"}</p>

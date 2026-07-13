@@ -30,6 +30,8 @@ describe("App", () => {
     await user.click(screen.getByRole("button", { name: /游客视角/ }));
 
     expect(await screen.findByRole("heading", { name: "游客视角" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "功能入口" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "资料检索" })).toBeInTheDocument();
     expect(screen.getByText(/12306/)).toBeInTheDocument();
     expect(screen.getByText(/携程/)).toBeInTheDocument();
     expect(screen.getAllByText(/视频|Video/).length).toBeGreaterThan(0);
@@ -43,6 +45,8 @@ describe("App", () => {
     await user.click(screen.getByRole("button", { name: /茶厂视角/ }));
 
     expect(await screen.findByRole("heading", { name: "茶厂视角" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "功能入口" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "资料检索" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "遥感成熟度依据" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "无人机示范田判读" })).toBeInTheDocument();
     expect(screen.getByAltText("无人机扫描示范田正射影像")).toBeInTheDocument();
@@ -61,5 +65,18 @@ describe("App", () => {
 
     expect(await screen.findByText(/建议优先采摘 YLD-A012/)).toBeInTheDocument();
     expect(screen.getByText(/YLD-A012\/P1/)).toBeInTheDocument();
+  });
+
+  it("builds a configured search link from the search panel", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: /茶厂视角/ }));
+    await user.clear(screen.getByLabelText("检索关键词"));
+    await user.type(screen.getByLabelText("检索关键词"), "NDVI 茶叶成熟");
+
+    const link = screen.getByRole("link", { name: /打开搜索/ });
+    expect(link).toHaveAttribute("href", expect.stringContaining("NDVI"));
+    expect(link).toHaveAttribute("target", "_blank");
   });
 });

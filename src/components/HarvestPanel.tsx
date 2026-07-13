@@ -11,7 +11,7 @@ export function HarvestPanel({ language, plots }: HarvestPanelProps) {
   const ranked = getTopHarvestPlots(plots);
 
   return (
-    <section className="panel harvest-panel" aria-labelledby="harvest-title">
+    <section id="harvest" className="panel harvest-panel" aria-labelledby="harvest-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "1-3 天计划" : "1-3 day plan"}</p>

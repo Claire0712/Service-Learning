@@ -12,7 +12,7 @@ export function UavFieldPanel({ language, plots }: UavFieldPanelProps) {
   const fieldImage = `${import.meta.env.BASE_URL}images/uav-demo-field.jpg`;
 
   return (
-    <section className="panel uav-field-panel" aria-labelledby="uav-field-title">
+    <section id="field" className="panel uav-field-panel" aria-labelledby="uav-field-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "无人机正射示范" : "UAV orthomosaic demo"}</p>

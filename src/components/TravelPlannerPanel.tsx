@@ -8,7 +8,7 @@ type TravelPlannerPanelProps = {
 
 export function TravelPlannerPanel({ language, resources }: TravelPlannerPanelProps) {
   return (
-    <section className="panel travel-panel" aria-labelledby="travel-title">
+    <section id="travel" className="panel travel-panel" aria-labelledby="travel-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "从出发到住宿" : "Departure to lodging"}</p>

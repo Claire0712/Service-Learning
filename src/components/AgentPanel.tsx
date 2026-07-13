@@ -77,7 +77,7 @@ export function AgentPanel({ language, remoteMode, perspective = "factory", cont
   }
 
   return (
-    <section className="panel agent-panel" aria-labelledby="agent-title">
+    <section id="notes" className="panel agent-panel" aria-labelledby="agent-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "证据问答" : "Evidence Q&A"}</p>

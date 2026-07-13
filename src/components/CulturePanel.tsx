@@ -8,7 +8,7 @@ type CulturePanelProps = {
 
 export function CulturePanel({ language, cards }: CulturePanelProps) {
   return (
-    <section className="panel" aria-labelledby="culture-title">
+    <section id="culture" className="panel" aria-labelledby="culture-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "茶文化知识库" : "Tea culture base"}</p>

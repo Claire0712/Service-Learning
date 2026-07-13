@@ -33,7 +33,7 @@ The first version runs as a local-demo-first web application. It uses structured
 - P1-P4 采摘优先级和采摘路径建议
 - 商家订单供货匹配与替代地块建议
 - 无人机复查任务列表
-- 预留远程 API/search 模式按钮
+- 资料检索面板：默认使用外部搜索链接，可通过 `VITE_SEARCH_API_URL` 接入自有 search API
 
 ## Data Gap Kept in Version 1
 
@@ -57,6 +57,14 @@ Install dependencies:
 ```bash
 npm install
 ```
+
+Optional search API configuration:
+
+```bash
+cp .env.example .env
+```
+
+Set `VITE_SEARCH_API_URL` only when a backend search endpoint is available. Without it, the app uses an external Bing search link as a working fallback.
 
 Start the development server:
 
@@ -127,4 +135,3 @@ If deployment fails at the Pages step, check:
 - Replace sample data with field-verified plot boundaries and maturity observations.
 - Add map-based harvest path visualization.
 - Add backend API endpoints for search, recommendation, and agent reasoning.
-

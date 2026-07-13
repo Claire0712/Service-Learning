@@ -8,7 +8,7 @@ type ExperiencePanelProps = {
 
 export function ExperiencePanel({ language, plan }: ExperiencePanelProps) {
   return (
-    <section className="panel experience-panel" aria-labelledby="experience-title">
+    <section id="experience" className="panel experience-panel" aria-labelledby="experience-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? `示范地块 ${plan.plotId}` : `Demo plot ${plan.plotId}`}</p>

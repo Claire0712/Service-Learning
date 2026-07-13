@@ -71,7 +71,7 @@ export function Header({
           aria-label={language === "zh" ? "切换联网模式" : "Toggle remote mode"}
         >
           {remoteMode ? <Globe2 size={16} /> : <WifiOff size={16} />}
-          {remoteMode ? (language === "zh" ? "API 预留" : "API stub") : language === "zh" ? "样例数据" : "Sample mode"}
+          {remoteMode ? (language === "zh" ? "API/Search" : "API/Search") : language === "zh" ? "样例数据" : "Sample mode"}
         </button>
 
         <span className="status-pill">
@@ -81,7 +81,7 @@ export function Header({
 
         <span className="status-pill muted">
           <Search size={14} />
-          {language === "zh" ? "Search 未配置" : "Search not configured"}
+          {language === "zh" ? "Search 可用" : "Search ready"}
         </span>
       </div>
     </header>

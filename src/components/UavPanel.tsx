@@ -14,7 +14,7 @@ const labels = {
 
 export function UavPanel({ language, tasks }: UavPanelProps) {
   return (
-    <section className="panel" aria-labelledby="uav-title">
+    <section id="uav" className="panel" aria-labelledby="uav-title">
       <div className="panel-heading">
         <div>
           <p className="eyebrow">{language === "zh" ? "遥感巡检" : "Remote sensing"}</p>
